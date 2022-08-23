@@ -19,8 +19,6 @@ public:
             }
         }
         v.push_back({name[name.size()-1],c});
-        for(auto it:v)
-            cout<<it.first<<" "<<it.second<<endl;
         j=0,c=0;
         for(int i=0;i<typed.size();i++)
         {
@@ -36,8 +34,6 @@ public:
             }
         }
         d.push_back({typed[typed.size()-1],c});
-        for(auto it:d)
-            cout<<it.first<<" "<<it.second<<endl;
         if(v.size()!=d.size())
             return false;
         else
