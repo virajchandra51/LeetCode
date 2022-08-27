@@ -1,54 +1,26 @@
 class Solution {
 public:
-    
-    // function for finding maximum subarray having sum less than k
-    
-    int find_max(vector<int>& arr, int k)
+    int maxSumSubarray(vector<int>& v, int k)
     {
-        int n = arr.size();
-        
-        int maxi = INT_MIN;
-        
-        // curr_sum will store cumulative sum
-        
-        int curr_sum = 0;
-        
-        // set will store the prefix sum of array
-        
         set<int> s;
-        
-        // put 0 into set, if curr_sum == k, (curr_sum - k) will be zero 
-        
         s.insert(0);
-        
-        for(int i = 0; i < n; i++)
+        int prefixSum=0;
+        int ans=INT_MIN;
+        int n = v.size();
+        for(int i=0;i<n;i++)
         {
-            // calculate cumulative sum
-            
-            curr_sum += arr[i];
-            
-            // find the prefix sum in set having sum == curr_sum - k
-            
-            auto it = s.lower_bound(curr_sum - k);
-            
-            // if prefix sum is present, update the maxi
-            
+            prefixSum+=v[i];
+            auto it = s.lower_bound(prefixSum - k);
             if(it != s.end())
             {
-                maxi = max(maxi, curr_sum - *it);
+                ans = max(ans, prefixSum - *it);
             }
-            
-            // insert prefix sum into set
-            
-            s.insert(curr_sum);
+            s.insert(prefixSum);
         }
-        
-        return maxi;
+        return ans;
     }
-    
     int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
-        
-        int n = matrix.size();
+         int n = matrix.size();
         
         int m = matrix[0].size();
         
@@ -71,7 +43,7 @@ public:
                 
                 // find maximum subarray having sum less than equal to k
                 
-                int curr_max = find_max(col_array, k);
+                int curr_max = maxSumSubarray(col_array, k);
                 
                 // update the maximum sum
                 
