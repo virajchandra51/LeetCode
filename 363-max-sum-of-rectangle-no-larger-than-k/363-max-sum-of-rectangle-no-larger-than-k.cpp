@@ -19,38 +19,24 @@ public:
         }
         return ans;
     }
+    
     int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
-         int n = matrix.size();
-        
+        int n = matrix.size();
         int m = matrix[0].size();
-        
         int maxi = INT_MIN;
-        
-        // fix the position of two rows and take cumulative sum of columns between two fixed rows
-        
         for(int start_row = 0; start_row < n; start_row++)
         {
             vector<int> col_array(m, 0);
-            
             for(int end_row = start_row; end_row < n; end_row++)
             {
-                // take cumulative sum of columns between two fixed rows
-                
                 for(int col = 0; col < m; col++)
                 {
                     col_array[col] += matrix[end_row][col];
                 }
-                
-                // find maximum subarray having sum less than equal to k
-                
                 int curr_max = maxSumSubarray(col_array, k);
-                
-                // update the maximum sum
-                
                 maxi = max(maxi, curr_max);
             }
         }
-        
         return maxi;
     }
 };
