@@ -1,22 +1,14 @@
 class Solution {
 public:
     int minMaxGame(vector<int>& nums) {
-        while(nums.size()!=1)
-        {
-            vector<int> v; int f=0;
-            for(int i=0;i<nums.size();i+=2)
-            {
-                if(f==0)
-                {
-                    v.push_back(min(nums[i],nums[i+1]));f=1;
-                }
-                else
-                {
-                    v.push_back(max(nums[i],nums[i+1]));f=0;
-                }
-            }
-            nums=v;
-        }
-        return nums[0];
+         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        if(nums.size() == 1) return nums[0];
+        int n = nums.size();
+        vector<int> newNums(n/2);
+        for(int i = 0; i < n/2; i++) newNums[i] = (i%2)? newNums[i] = max(nums[2*i], nums[2*i+1]):min(nums[2*i], nums[2*i+1]);
+        int ans = minMaxGame(newNums);
+        return ans;
     }
 };
