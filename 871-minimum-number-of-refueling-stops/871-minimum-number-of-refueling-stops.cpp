@@ -18,14 +18,11 @@ public:
             {
                 //dont refuel
                 t[i][j] = t[i-1][j];
-                //i refuel
                 if(t[i-1][j-1] >= stations[i-1][0]) {
                     t[i][j] = max(t[i][j], t[i-1][j-1] + stations[i-1][1]);
                 }
             }
         }
-        
-        cout<<endl;
          for(int j = 0; j<n+1; j++) {
             if(t[n][j] >= target)
                 return j;
