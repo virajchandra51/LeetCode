@@ -12,14 +12,13 @@ public:
         {
             s+="(";
             G(n,open+1,close,s);
-            s = s.substr(0,s.size()-1);
+            s.pop_back();
         }
         if(close<open)
         {
             s+=")";
             G(n,open,close+1,s);
-            s = s.substr(0,s.size()-1);
-            
+            s.pop_back();
         }
     }
     vector<string> generateParenthesis(int n) {
