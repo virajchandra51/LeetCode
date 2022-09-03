@@ -3,7 +3,7 @@ public:
     vector<string> ans;
     void G(int &n, int open, int close, string s)
     {
-        if(s.size()==n*2)
+        if(open==n && close==n)
         {
             ans.push_back(s);
             return;
