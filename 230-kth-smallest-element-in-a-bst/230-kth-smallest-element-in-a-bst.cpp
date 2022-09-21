@@ -18,7 +18,6 @@ public:
             return; 
         in(root->left,k);
         k--;
-        cout<<k<<endl;
         if(k==0)
         {
             if(f==0)
