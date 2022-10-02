@@ -3,7 +3,7 @@ public:
     int M = 1000000007;
     // dp [i][j] = number of ways to make sum j using first i dices out of n
     // dp[n][targetSum] = ans
-    // dp [i][j] += dp[i-1][targetSum]
+    // dp [i][j] += (dp[i][j]%M +dp[i-1][z]%M)%M;
     vector<vector<int>> dp;
     int numRollsToTarget(int n, int k, int target) {
         dp.resize(n+1,vector<int>(target+1));
