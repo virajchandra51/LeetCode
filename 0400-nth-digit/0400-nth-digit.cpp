@@ -13,14 +13,11 @@ public:
             b*=10;
         }
         long num = 1;
-        cout<<d<<endl;
         for(int i=1;i<d;i++)
             num*=10;
-        cout<<num<<endl;
         num+=(n/d);
         if(n%d==0)
             num--;
-        cout<<num<<endl;
         int id = n%d;
         if(id==0)
             return num%10;
