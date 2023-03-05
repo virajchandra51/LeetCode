@@ -1,25 +1,16 @@
 class Solution {
 public:
-    int M = 1000000007;
-    // dp [i][j] = number of ways to make sum j using first i dices out of n
-    // dp[n][targetSum] = ans
-    // dp [i][j] += (dp[i][j]%M +dp[i-1][z]%M)%M;
-    vector<vector<int>> dp;
+    int mod=1000000007;
+    int solve(int n, int k, int target, vector<vector<int>>&dp){
+        if(n==0)return target==0;
+        if(dp[n][target]!=-1)return dp[n][target];
+        int ans=0;
+        for(int i=1;i<=k;i++){
+            if(i<=target)ans=(ans+solve(n-1, k, target-i, dp))%mod;
+        }return dp[n][target]=ans;
+    }
     int numRollsToTarget(int n, int k, int target) {
-        dp.resize(n+1,vector<int>(target+1));
-        for(int i=1;i<=(min(k,target));i++)
-            dp[1][i]=1;
-        
-        
-        for(int i=2;i<=n;i++)
-        {
-            for(int j=1;j<target+1;j++)
-            {
-                for(int z=max(0,j-k);z<j;z++)
-                    dp[i][j] = (dp[i][j]%M +dp[i-1][z]%M)%M;
-            }
-        }
-        
-        return dp[n][target];
+        vector<vector<int>>dp(n+1, vector<int>(target+1, -1));
+        return solve(n, k, target, dp);
     }
 };
