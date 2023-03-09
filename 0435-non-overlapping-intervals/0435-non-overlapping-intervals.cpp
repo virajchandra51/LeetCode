@@ -1,16 +1,14 @@
 class Solution {
 public:
-    int eraseOverlapIntervals(vector<vector<int>>& i) {
-        sort(i.begin(),i.end(),[](vector<int> &a, vector<int> &b) {return a[1]<b[1];});
-        for(auto it:i)
-            cout<<it[0]<<" "<<it[1]<<endl;
-        
-        int n=i.size(), ans=-1, prev=i[0][1];
-        for(int j=0;j<n;j++){
-            if(i[j][0]<prev){
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+        sort(intervals.begin(), intervals.end());
+        int n=intervals.size(), ans=0, prev=intervals[0][1];
+        for(int i=1;i<n;i++){
+            if(intervals[i][0]<prev){
                 ans++;
+                prev=min(prev, intervals[i][1]);
             }
-            else prev=i[j][1];
+            else prev=intervals[i][1];
         }return ans;
     }
 };
