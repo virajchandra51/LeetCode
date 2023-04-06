@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> ans;
-    void c(vector<int> a, vector<int>& nums, int n)
+    void c(vector<int> a, vector<int>& nums, int n, vector<int>& used)
     {
         if(a.size()==n)
         {
@@ -10,17 +10,20 @@ public:
         }
         for(int ind=0;ind<n;ind++)
         {
-            auto it = find(a.begin(),a.end(),nums[ind]);
-            if(it!=a.end()) continue;
+            if(used[ind]) continue;
             a.push_back(nums[ind]);
-            c(a,nums,n);
+            used[ind]=1;
+            c(a,nums,n,used);
+            used[ind]=0;
             a.pop_back();
         }
         return;
     }
     vector<vector<int>> permute(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<int> used(nums.size(),0);
         vector<int> a;
-        c(a,nums,nums.size());
+        c(a,nums,nums.size(),used);
         return ans;
     }
 };
