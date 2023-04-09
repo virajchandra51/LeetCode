@@ -18,7 +18,7 @@ public:
             for(long i=0;i<indexes.size();i++)
             {
                 long ind = indexes[i];
-                ans[ind] = ((indexes[i]*i)-(PreSum))+(TotalSum-PreSum-indexes[i])-(indexes[i]*(indexes.size()-1-i));
+                ans[ind] = ((ind*i)-(PreSum))+(TotalSum-PreSum-ind)-(ind*(indexes.size()-1-i));
                 PreSum += ind;
             }
         }
