@@ -18,10 +18,7 @@ public:
             for(long i=0;i<indexes.size();i++)
             {
                 long ind = indexes[i];
-                ans[ind] += (ind*i);
-                ans[ind] -= (PreSum);
-                ans[ind] -= (ind*(indexes.size()-i-1));
-                ans[ind] += (TotalSum-PreSum-ind);
+                ans[ind] = ((ind*i)-(PreSum))+(TotalSum-PreSum-ind)-(ind*(indexes.size()-1-i));
                 PreSum += ind;
             }
         }
