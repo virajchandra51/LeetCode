@@ -132,9 +132,7 @@ int kthAncestor(Node *root, int k, int node)
 {
     vector<int> d,v;
     f(root,node,d,v);
-    int ind = v.size()-1;
-    ind-=k;
-    if(ind<0) return -1;
-    return v[v.size()-1-k];
+    if((int)(v.size()-1-k)<0) return -1;
+    return v[(int)(v.size()-1-k)];
     // Code here
 }
