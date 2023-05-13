@@ -8,7 +8,7 @@ class Solution{
     //Function to count the frequency of all elements from 1 to N in the array.
     void frequencyCount(vector<int>& arr,int N, int P)
     {   
-        vector<int> hash(P+1,0);
+        int hash[P+1] = {0};
         for(int i=0;i<N;i++)
           hash[arr[i]]++;
         for(int i=0;i<N;i++)
