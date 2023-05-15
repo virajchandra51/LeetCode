@@ -7,8 +7,8 @@ public:
         int ans;
         while(l<=r)
         {
-            int m = (l+r)>>1;
-            if((m)<=(x/m))
+            long m = (l+r)>>1;
+            if((m*m)<=(x))
             {
                 ans=m;
                 l=m+1;
