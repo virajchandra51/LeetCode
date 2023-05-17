@@ -15,23 +15,25 @@ class Solution{
     public:
     int fi(vector<int>& a, int st, int t)
     {
-        int l = st;
+        int l = st+1;
         int r = a.size()-1;
-        if(t>=a[r]) return r+1;
+        if(t>a[r]) return r+1;
         int ans;
-        while(l<r)
+        while(l<=r)
         {
             int m = (l+r)>>1;
             if(a[m]>t)
             {
-                r=m;
+                r=m-1;
+                ans=m;
             }
             else
             {
+                // ans=m;
                 l=m+1;
             }
         }
-        return r;
+        return ans;
     }
     int removals(vector<int>& a, int k){
         //Code here
@@ -42,6 +44,7 @@ class Solution{
         {
             int it = fi(a,i,a[i]+k);
             // cout<<it<<endl;
+            if(it!=-1)
             ans=min(ans,n-(it-i));
         }
         return (int)ans==INT_MAX?1:ans;
