@@ -13,16 +13,35 @@ using namespace std;
 
 class Solution{
     public:
+    int fi(vector<int>& a, int st, int t)
+    {
+        int l = st;
+        int r = a.size()-1;
+        if(t>=a[r]) return r+1;
+        int ans;
+        while(l<r)
+        {
+            int m = (l+r)>>1;
+            if(a[m]>t)
+            {
+                r=m;
+            }
+            else
+            {
+                l=m+1;
+            }
+        }
+        return r;
+    }
     int removals(vector<int>& a, int k){
         //Code here
         sort(a.begin(),a.end());
         int n = a.size();
-        long ans=INT_MAX;
+        int ans=INT_MAX;
         for(int i=0;i<n;i++)
         {
-            auto it = upper_bound(a.begin(),a.end(),a[i]+k)-a.begin();
+            int it = fi(a,i,a[i]+k);
             // cout<<it<<endl;
-            // if(it-i==1) continue;
             ans=min(ans,n-(it-i));
         }
         return (int)ans==INT_MAX?1:ans;
