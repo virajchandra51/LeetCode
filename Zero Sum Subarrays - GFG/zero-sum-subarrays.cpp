@@ -13,20 +13,15 @@ public:
     //Function to count subarrays with sum equal to 0.
     long long int findSubarray(vector<long long int> &arr, int n ) {
         //code here
-        vector<long long int> pre(n);
-        pre[0] = arr[0];
-        for(int i=1;i<n;i++)
-        pre[i] = pre[i-1]+arr[i];
-        map<long long int,long long int> mp;
-        for(auto it:pre)
+        long long ans=0;
+        map<long long int,int> mp;
+        long long sum=0;
+        for(auto it:arr)
         {
-            mp[it]++;
-        }
-        long long int ans=0;
-        for(auto it:mp)
-        {
-            ans+=it.second*(it.second-1)/2;
-            if(it.first==0) ans+=it.second;
+            sum+=it;
+            if(mp.find(sum)!=mp.end()) ans+=mp[sum];
+            if(sum==0) ans++;
+            mp[sum]++;
         }
         return ans;
     }
