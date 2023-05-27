@@ -14,11 +14,17 @@ public:
     {
         int n = board.size();
         int i,j;
-        for(i=0;i<col;i++)
+        for(i=0;i<n;i++)
         if(board[row][i]) return false;
+        for(i=0;i<n;i++)
+        if(board[i][col]) return false;
         for (i = row, j = col; i >= 0 && j >= 0; i--, j--)
         if (board[i][j]) return false;
+        for (i = row, j = col; i < n && j < n; i++, j++)
+        if (board[i][j]) return false;
         for (i = row, j = col; j >= 0 && i < n; i++, j--)
+        if (board[i][j]) return false;
+        for (i = row, j = col; j < n && i>=0; i--, j++)
         if (board[i][j]) return false;
         return true;
     }
