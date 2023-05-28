@@ -18,7 +18,7 @@ class Solution{
         {
             if(vis[i] || currsum+a[i]>tar) continue;
             vis[i]=1;
-            if(helper(a,n,k,currsum+a[i],i,vis,tar)==true) return true;
+            if(helper(a,n,k,currsum+a[i],i+1,vis,tar)==true) return true;
             vis[i]=0;
         }
         return false;
