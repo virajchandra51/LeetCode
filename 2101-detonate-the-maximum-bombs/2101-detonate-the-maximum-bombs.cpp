@@ -8,7 +8,7 @@ public:
         {
             if(!vis[it])
             {
-                vis[it]=1;
+                // vis[it]=1;
                 ans+=dfs(adj,vis,it);
             }
         }
