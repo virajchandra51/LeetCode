@@ -35,21 +35,20 @@ class Solution
         for(int i=0;i<N;i++)
         {l=max(l,A[i]);r+=A[i];}
         int ans;
-        while(l<=r)
+        while(l<r)
         {
             long mid = (l+r)>>1;
             // cout<<feasible(A,N,mid)<<" "<<mid<<endl;
             if(feasible(A,N,mid)<=M)
             {
-                ans = mid;
-                r = mid-1;
+                r = mid;
             }
-            else if(feasible(A,N,mid)>M)
+            else
             {
                 l = mid+1;
             }
         }
-        return ans;
+        return l;
     }
 };
 
