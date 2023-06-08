@@ -6,32 +6,34 @@ using namespace std;
 class Solution
 {
 	public:
-		vector<string>find_permutation(string S)
+		vector<string>find_permutation(string s)
 		{
-		    sort(S.begin(),S.end());
-		    int n = S.size();
+		    // Code here there
+		    sort(s.begin(),s.end());
 		    vector<string> ans;
+		    int n = s.size();
 		    while(true)
 		    {
-		        ans.push_back(S);
+		        ans.push_back(s);
 		        int ind = n-1;
-		        while(ind-1>=0 && S[ind]<=S[ind-1])
+		        while(ind-1>=0 && s[ind-1]>=s[ind])
 		        {
 		            ind--;
 		        }
-		        if(ind-1<0)
-		        break;
-		        else
-		        {
-		            ind--;
-		            int si = n-1;
-		            while(S[si]<S[ind]) si--;
-		            swap(S[si],S[ind]);
-		            reverse(S.begin()+ind+1,S.end());
-		            
-		        }
+		        if(ind==0) break;
+		        ind--;
+		        int i = n-1;
+		        while(s[ind]>=s[i])
+		        i--;
+		      //  cout<<ind<<" "<<i<<endl;
+		        char ch = s[ind];
+		        s[ind] = s[i];
+		        s[i] = ch;
+		        reverse(s.begin()+ind+1,s.end());
+		      //  break;
 		    }
-		  return ans;
+		  //  cout<<s<<endl;
+		    return ans;
 		}
 };
 
