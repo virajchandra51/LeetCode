@@ -11,25 +11,27 @@ using namespace std;
 class Solution{
     public:
     vector<string> ans;
-    void bfs(vector<vector<int>> &m, int n, string s, int i ,int j,vector<vector<int>> vis)
+    void bfs(vector<vector<int>> &m, int n, string s, int i ,int j)
     {   
-        if(i<0 || j<0 || i>=n || j>=n || m[i][j]==0 || vis[i][j]==1)
+        if(i<0 || j<0 || i>=n || j>=n || m[i][j]==0 || m[i][j]==0)
         return;
         if(i==n-1 && j==n-1)
         {
             ans.push_back(s);return;
         }
-        vis[i][j]=1;
-        bfs(m,n,s+'R',i,j+1,vis);
-        bfs(m,n,s+'L',i,j-1,vis);
-        bfs(m,n,s+'U',i-1,j,vis);
-        bfs(m,n,s+'D',i+1,j,vis);
+        int a = m[i][j];
+        m[i][j]=0;
+        bfs(m,n,s+'R',i,j+1);
+        bfs(m,n,s+'L',i,j-1);
+        bfs(m,n,s+'U',i-1,j);
+        bfs(m,n,s+'D',i+1,j);
+        m[i][j]=a;
     }
     vector<string> findPath(vector<vector<int>> &m, int n) {
         if(m[0][0]==0 || m[n-1][n-1]==0)
         return {};
-        vector<vector<int>> vis(n,vector<int>(n,0));
-        bfs(m,n,"",0,0,vis);
+        // vector<vector<int>> vis(n,vector<int>(n,0));
+        bfs(m,n,"",0,0);
         return ans;
         // Your code goes here
     }
