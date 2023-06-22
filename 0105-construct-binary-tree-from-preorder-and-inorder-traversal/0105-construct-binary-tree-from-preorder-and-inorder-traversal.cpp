@@ -19,8 +19,6 @@ public:
         int val = preorder[pre++];
         int in = m[val];
         TreeNode* root = new TreeNode(val);
-        if(st==en)
-        return root;
         root->left = helper(preorder,inorder,st,in-1);
         root->right = helper(preorder,inorder,in+1,en);
         return root;
