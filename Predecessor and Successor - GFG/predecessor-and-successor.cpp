@@ -42,36 +42,29 @@ class Solution
     void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
     {
         // Your code goes here
-        Node* cur1 = root;
-
-        pre = NULL;
-        suc = NULL;
-        while(cur1)
+        pre=NULL;
+        suc=NULL;
+        Node* c = root;
+        while(c)
         {
-            if(cur1->key>key)
+            if(c->key<key)
             {
-                suc = cur1;
-                cur1 = cur1->left;
+                pre = c;
+                c=c->right;
             }
-            else
-            {
-                cur1 = cur1->right;
-            }
+            else c=c->left;
         }
-        cur1=root;
-        while(cur1)
+        c=root;
+        while(c)
         {
-            if(cur1->key<key)
+            if(c->key>key)
             {
-                pre = cur1;
-                cur1 = cur1->right;
+                suc = c;
+                c=c->left;
             }
-            else
-            {
-                cur1 = cur1->left;
-            }
+            else c=c->right;
         }
-        
+        return;
     }
 };
 
