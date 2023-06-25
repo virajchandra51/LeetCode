@@ -7,28 +7,24 @@ class Solution {
   public:
     // Function to return a list containing the DFS traversal of the graph.
     vector<int> ans;
-    
-    void dfs(int n,vector<int> &vis,vector<int> adj[])
+    void dfs(int node, vector<int> &vis, vector<int> adj[])
     {
-        vis[n]=1;
-        ans.push_back(n);
-        for(auto it:adj[n])
+        vis[node]=1;
+        ans.push_back(node);
+        if(adj[node].size()==0) return;
+        for(auto it:adj[node])
         {
-            if(vis[it]==0)
-            {
-                vis[it]=1;
-                
-                dfs(it,vis,adj);
-            }
+            if(vis[it]) continue;
+            vis[it]=1;
+            dfs(it,vis,adj);
         }
         return;
     }
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         // Code here
-        vector<int> vis(V,0);
+        vector<int> vis(V+1,0);
         dfs(0,vis,adj);
         return ans;
-        
     }
 };
 
