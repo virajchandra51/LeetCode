@@ -5,11 +5,12 @@ public:
         priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> p;
         long n = nums1.size();
         long m = nums2.size();
-        int t = n*m;
+        long t = n*m;
         s.insert({0,0});
         p.push({nums1[0]+nums2[0],{0,0}});
         vector<vector<int>> a;
-        while(k-- && !p.empty())
+        if(k>t) k=t;
+        while(k--)
         {
             auto it = p.top();
             p.pop();
