@@ -3,8 +3,6 @@ public:
     int solve(vector<int>& piles, int i, int j, int sum, vector<vector<int>>& dp) {
         if(i>j)
             return 0;
-        if(i==j)
-            return piles[i];
         if(dp[i][j] != -1)
             return dp[i][j];
         return dp[i][j] = max(sum - solve(piles, i+1, j, sum-piles[i], dp), sum - solve(piles, i, j-1, sum-piles[j], dp));
