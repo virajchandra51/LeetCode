@@ -1,21 +1,23 @@
 class Solution {
 public:
-    bool helper(vector<int>& nums, int n, int k, int currsum, int st, vector<int>& vis, int tar)
+    bool ans = false;
+    void helper(vector<int>& nums, vector<long long>& sum, int target, int i, int n, int k)
     {
-        if(k==1) return true;
-        if(currsum==tar) return helper(nums,n,k-1,0,0,vis,tar);
-        for(int i=st;i<n;i++)
+        if(i>=n)
         {
-            if(i>0 && !vis[i-1] && nums[i]==nums[i-1])
-                continue;
-            if(!vis[i] && currsum+nums[i]<=tar)
-            {
-                vis[i]=1;
-                if(helper(nums,n,k,currsum+nums[i],i+1,vis,tar)) return true;
-                vis[i]=0;
-            }
+            ans=true;
+            return;
         }
-        return false;
+        for(int kk=0;kk<k;kk++)
+        {
+            if(sum[kk]+nums[i]<=target)
+            {
+                sum[kk]+=nums[i];
+                helper(nums,sum,target,i+1,n,k);
+                sum[kk]-=nums[i];
+            }
+            if(sum[kk]==0) break;
+        }
     }
     bool canPartitionKSubsets(vector<int>& nums, int k) {
         int tar = 0;
@@ -23,9 +25,8 @@ public:
         for(auto it:nums) tar+=it;
         if(k>tar || tar%k!=0) return false;
         tar/=k;
-        sort(nums.begin(),nums.end());
-        reverse(nums.begin(),nums.end());
-        vector<int> vis(n,0);
-        return helper(nums,n,k,0,0,vis,tar);
+        vector<long long> sum(k,0);
+        helper(nums,sum,tar,0,n,k);
+        return ans;
     }
 };
