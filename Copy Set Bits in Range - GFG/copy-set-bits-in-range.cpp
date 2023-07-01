@@ -9,13 +9,19 @@ class Solution{
     public:
     int setSetBit(int x, int y, int l, int r){
         // code here
-        int i=1;
-        while(y)
-        {
-            if(i>=l && i<=r && y&1) x|=(1<<(i-1));
-            y>>=1;
-            i++;
-        }
+        int xx = x;
+        int yy = y;
+        xx>>=(l-1);
+        yy>>=(l-1);
+        // cout<<xx<<endl;
+        // cout<<yy<<endl;
+        xx&=((1<<(r-l+1))-1);
+        yy&=((1<<(r-l+1))-1);
+        // cout<<xx<<endl;
+        // cout<<yy<<endl;
+        xx|=yy;
+        xx<<=(l-1);
+        x|=xx;
         return x;
     }
 };
