@@ -6,34 +6,43 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int totalFruits(int N, vector<int> &fruits) {
-        map<int,int> m;
-        int i=0;
-        int j=0;
+    int totalFruits(int n, vector<int> &arr) {
         int ans = 0;
-        while(j<N)
-        {
-            m[fruits[j]]++;
-            if(m.size()<=2)
-            {
-                ans=max(ans,j-i+1);
-            }
-            else
-            {
-                while(m[fruits[i]]>0)
-                {
-                    m[fruits[i]]--;
-                    if(m[fruits[i]]==0)
-                    {
-                        m.erase(fruits[i]);
-                        break;
-                    }
-                    i++;
+        int first = arr[0];
+        int second = 1e4;
+        int i = 0;
+        int j = 0;
+        int count = 1;
+        while(i<n && j<n){
+            if(count==1){
+                if(arr[j]==first){
+                    j++;
                 }
-                i++;
+                else{
+                    second = arr[j];
+                    j++;
+                    count++;
+                }
             }
-            j++;
+            else{
+                if(arr[j]==first){
+                    j++;
+                }
+                else if(arr[j]==second){
+                    j++;
+                }
+                else{
+                    ans = max(ans, j-i);
+                    i++;
+                    first = arr[i];
+                    count--;
+                    j = i;
+    
+                }
+            }
         }
+        // cout<<j<<" "<<i<<endl;
+        ans = max(ans, j-i);
         return ans;
     }
 };
