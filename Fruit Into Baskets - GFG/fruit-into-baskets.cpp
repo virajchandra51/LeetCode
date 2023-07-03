@@ -13,7 +13,7 @@ class Solution {
         int i = 0;
         int j = 0;
         int count = 1;
-        while(i<n && j<n){
+        while(j<n){
             if(count==1){
                 if(arr[j]==first){
                     j++;
@@ -37,7 +37,6 @@ class Solution {
                     first = arr[i];
                     count--;
                     j = i;
-    
                 }
             }
         }
