@@ -11,7 +11,7 @@ class Solution {
         int i=0;
         int j=0;
         int ans = 0;
-        while(j<N && i<N)
+        while(j<N)
         {
             m[fruits[j]]++;
             if(m.size()<=2)
