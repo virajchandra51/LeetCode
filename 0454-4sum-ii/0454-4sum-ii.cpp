@@ -1,24 +1,32 @@
 class Solution {
 public:
-    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
-        int c = 0;
-        int n = nums1.size();
-        map<int,int> m;
-        for(int i=0;i<n;i++)
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        set<vector<int>> v;
+        vector<vector<int>> vv;
+        for(int a=0;a<nums.size();a++)
         {
-            for(int j=0;j<n;j++)
+            for(int b=a+1;b<nums.size();b++)
             {
-                m[nums1[i]+nums2[j]]++;
+                for(int c=b+1;c<nums.size();c++)
+                {
+                    for(int d=c+1;d<nums.size();d++)
+                    {
+                        if(nums[a]+nums[b]+nums[c]+nums[d]==target)
+                        {
+                            vector<int> aa;
+                            aa.push_back(nums[a]);
+                            aa.push_back(nums[b]);
+                            aa.push_back(nums[c]);
+                            aa.push_back(nums[d]);
+                            sort(aa.begin(),aa.end());
+                            v.insert(aa);
+                        }
+                    }
+                }
             }
         }
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<n;j++)
-            {
-                if(m.find(0-nums3[i]-nums4[j])!=m.end())
-                c+=m[0-nums3[i]-nums4[j]];
-            }
-        }
-        return c;
+        for(auto it:v)
+            vv.push_back(it);
+        return vv;
     }
 };
