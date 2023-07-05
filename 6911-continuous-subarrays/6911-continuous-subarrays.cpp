@@ -9,7 +9,7 @@ public:
         while(j<n)
         {
             m[nums[j]]++;
-            while(m.size()>1 && i<n && i<j && m.rbegin()->first-m.begin()->first>2)
+            while(i<n && i<j && m.rbegin()->first-m.begin()->first>2)
             {
                 m[nums[i]]--;
                 if(m[nums[i]]==0)
