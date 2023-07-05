@@ -6,20 +6,18 @@ public:
         int j = 0;
         int c = 0;
         int n = nums.size();
-        while(j<n)
+        for(int j=0;j<n;j++)
         {
             if(nums[j]==1)
             {
-                j++;
-                ans=max(ans,j-i-1);
+                ans=max(ans,j-i);
             }
             else
             {
                 if(c==0)
                 {
                     c++;
-                    j++;
-                    ans=max(ans,j-i-1);
+                    ans=max(ans,j-i);
                 }
                 else
                 {
@@ -28,8 +26,7 @@ public:
                         i++;
                     }
                     i++;
-                    ans=max(ans,j-i-1);
-                    j++;
+                    ans=max(ans,j-i);
                 }
             }
         }
