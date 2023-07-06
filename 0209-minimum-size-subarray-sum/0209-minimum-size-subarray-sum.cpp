@@ -1,5 +1,25 @@
 class Solution {
 public:
+    long id(vector<int>& a, int st, int n, int t)
+    {
+        int l = st;
+        int r = n-1;
+        long ans=-1;
+        while(l<=r)
+        {
+            int m = (l+r)>>1;
+            if(a[m]>=t)
+            {
+                ans=m;
+                r=m-1;
+            }
+            else
+            {
+                l=m+1;
+            }
+        }
+        return ans;
+    }
     int minSubArrayLen(int target, vector<int>& nums) {
         long ans = INT_MAX;
         int n = nums.size();
@@ -10,23 +30,21 @@ public:
         {
             if(i==0)
             {
-                auto it = lower_bound(a.begin()+i,a.end(),target)-a.begin();
-                if(it==n)
+                auto it = id(a,i,n,target);
+                if(it==-1)
                     continue;
                 else
                     ans=min(ans,it-i+1);
             }
             else
             {
-                auto it = lower_bound(a.begin()+i,a.end(),target+a[i-1])-a.begin();
-                if(it==n)
+                auto it = id(a,i,n,target+a[i-1]);
+                if(it==-1)
                     continue;
                 else
                     ans=min(ans,it-i+1);
             }
         }
-        // 1 3 6 10 15
-        // 1 5 9
         return ans==INT_MAX?0:ans;
     }
 };
