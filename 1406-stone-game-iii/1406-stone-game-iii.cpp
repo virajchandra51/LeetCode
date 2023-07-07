@@ -1,25 +1,34 @@
 class Solution {
 public:
-    vector<int> dp;
-    int helper(vector<int>& v, int i,int n)
+    vector<vector<int>> dp;
+    int helper(vector<int>&v, int i, int n, int turn)
     {
         if(i>=n) return 0;
-        if(dp[i]!=-1) return dp[i];
-        int ans = INT_MIN; int alice=0;
-        for(int k=i;k<min(n,i+3);k++)
+        if(dp[i][turn]!=-1) return dp[i][turn];
+        if(turn)
         {
-            alice+=v[k];
-         ans=max(ans,alice+min({helper(v,k+2,n),helper(v,k+3,n),helper(v,k+4,n)}));
+            int res = INT_MIN;
+            res=max(res,v[i]+helper(v,i+1,n,0));
+            if(i+1<n)
+            res=max(res,v[i]+v[i+1]+helper(v,i+2,n,0));
+            if(i+2<n)
+            res=max(res,v[i]+v[i+1]+v[i+2]+helper(v,i+3,n,0));
+            return dp[i][turn] = res;
         }
-        return dp[i]=ans;
+        int res = INT_MAX;
+        res=min(res,-v[i]+helper(v,i+1,n,1));
+        if(i+1<n)
+        res=min(res,-v[i]-v[i+1]+helper(v,i+2,n,1));
+        if(i+2<n)
+        res=min(res,-v[i]-v[i+1]-v[i+2]+helper(v,i+3,n,1));
+        return dp[i][turn] = res;
     }
     string stoneGameIII(vector<int>& v) {
         int n = v.size();
-        dp.resize(n+1,-1);
-        int aliceS = helper(v,0,n);
-        int bobS = accumulate(v.begin(),v.end(),0) - aliceS;
-        if(aliceS>bobS) return "Alice";
-        else if(aliceS<bobS) return "Bob";
-        return "Tie";
+        dp.resize(n+1,vector<int>(2,-1));
+        int ans = helper(v,0,n,1);
+        if(ans>0) return "Alice";
+        if(ans==0) return "Tie";
+        return "Bob";
     }
 };
