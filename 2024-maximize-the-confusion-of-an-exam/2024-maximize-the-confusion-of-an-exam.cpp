@@ -23,7 +23,7 @@ public:
                 }
                 else
                 {
-                    while(i<n && s[i]!='F')
+                    while(s[i]!='F')
                     {
                         i++;
                     }
@@ -53,7 +53,7 @@ public:
                 }
                 else
                 {
-                    while(i<n && s[i]!='T')
+                    while(s[i]!='T')
                     {
                         i++;
                     }
