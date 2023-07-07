@@ -23,9 +23,8 @@ public:
                 }
                 else
                 {
-                    while(s[i]!='F')
+                    while(c>=k && i<n && s[i]!='F')
                     {
-                        if(s[i]=='F') c--;
                         i++;
                     }
                     i++;
@@ -54,9 +53,8 @@ public:
                 }
                 else
                 {
-                    while(s[i]!='T')
+                    while(c>=k && i<n && s[i]!='T')
                     {
-                        if(s[i]=='T') c--;
                         i++;
                     }
                     i++;
