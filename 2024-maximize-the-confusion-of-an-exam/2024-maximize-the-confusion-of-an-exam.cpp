@@ -25,6 +25,7 @@ public:
                 {
                     while(s[i]!='F')
                     {
+                        if(s[i]=='F') c--;
                         i++;
                     }
                     i++;
@@ -55,6 +56,7 @@ public:
                 {
                     while(s[i]!='T')
                     {
+                        if(s[i]=='T') c--;
                         i++;
                     }
                     i++;
