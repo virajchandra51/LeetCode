@@ -6,7 +6,8 @@ public:
         if(currsum==target) return helper(nums,vis,target,0,n,k-1,0);
         for(int i=st;i<n;i++)
         {
-            if(i>st && !vis[i-1] && nums[i]==nums[i-1]) continue; 
+            // if(i>st && nums[i]==nums[i-1]) continue;
+            if(nums[i]>target) return false;
             if(vis[i]==0 && currsum+nums[i]<=target)
             {
                 vis[i]=1;
@@ -16,6 +17,8 @@ public:
         }
         return false;
     }
+    // 10 9 9 9 6 6 5 5 4 4 3 3 3 3 1 1
+    
     bool canPartitionKSubsets(vector<int>& nums, int k) {
         int tar = 0;
         int n = nums.size();
