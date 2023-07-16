@@ -5,41 +5,42 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 	public:
-	string FirstNonRepeating(string a){
-	    // Code here
-	    string ans = ""; ans+=a[0];
-	    int n = a.size();
-	    vector<pair<int,int>> v;
-	    v.push_back({a[0],1});
-	    for(int i=1;i<n;i++)
-	    {
-	        int ff=0;
-	        for(auto &it:v)
-	        {
-	            if(it.first==a[i])
-	            {
-	                ff=1;
-	                it.second++;
-	                break;
-	            }
-	        }
-	        if(ff==0)
-	        v.push_back({a[i],1});
-	        int f=0;
-	        for(auto it:v)
-	        {
-	            if(it.second==1)
-	            {
-	                f=1;
-	                ans+=it.first;
-	                break;
-	            }
-	        }
-	        if(f==0) ans+='#';
-	       // cout<<endl;
-	    }
-	    return ans;
-	}
+		string FirstNonRepeating(string A){
+		    // Code here
+		    map<char,int> m;
+		    m[A[0]]++;
+		    string a = "";
+		    a+=A[0];
+		    char ch = A[0];
+		    int j = 0;
+		    for(int i = 1;i<A.size();i++)
+		    {
+		        m[A[i]]++;
+		        if(m[A[i]]==1 && ch=='#') ch=A[i]; 
+		        if(m[ch]==1)
+		        {
+		            a+=ch;
+		        }
+		        else
+		        {
+		            while(j<i && m[A[j]]!=1)
+		            {
+		                j++;
+		            }
+		            if(j==i)
+		            {
+		                ch='#';
+		                a+=ch;
+		            }
+		            else
+		            {
+		                ch=A[j];
+		                a+=ch;
+		            }
+		        }
+		    }
+		    return a;
+		}
 };
 
 //{ Driver Code Starts.
