@@ -15,12 +15,18 @@ public:
                 if(j==0)
                 {
                     if(st.find(a)!=st.end())
-                        dp[i]=1;
+                    {
+                        dp[i] = 1;
+                        break;
+                    }
                 }
                 else
                 {
                     if(st.find(a)!=st.end() && dp[j-1]==1)
-                        dp[i]=1;
+                    {
+                        dp[i] = 1;
+                        break;
+                    }
                 }
             }
         }
