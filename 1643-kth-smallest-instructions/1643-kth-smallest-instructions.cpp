@@ -14,7 +14,7 @@ public:
         {
             if(currH>0)
             {
-                double ifH = fac[total-1]/fac[currH-1]/fac[currV];
+                long long ifH = fac[total-1]/fac[currH-1]/fac[currV];
                 if(ifH>=k)
                 {
                     a+="H";
