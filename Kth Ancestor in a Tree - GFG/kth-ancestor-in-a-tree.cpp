@@ -111,28 +111,24 @@ struct Node
 };
 */
 // your task is to complete this function
-void f(Node *root, int t, vector<int> &v,vector<int> &a)
+void dfs(map<int, int> &m, Node* root, Node* par)
 {
-    if(root==NULL)
-    return;
-    if(root->data==t)
-    {
-        v.push_back(root->data);
-        a=v;
-        v.pop_back();
-        return;
-    }
-    v.push_back(root->data);
-    f(root->left,t,v,a);
-    f(root->right,t,v,a);
-    v.pop_back();
-    return;
+    if(!root) return;
+    if(par!=NULL) m[root->data] = par->data;
+    dfs(m,root->left,root);
+    dfs(m,root->right,root);
 }
 int kthAncestor(Node *root, int k, int node)
 {
-    vector<int> d,v;
-    f(root,node,d,v);
-    if((int)(v.size()-1-k)<0) return -1;
-    return v[(int)(v.size()-1-k)];
+    map<int, int> m;
+    dfs(m,root,NULL);
+    int ans=-1;
+    while(m.find(node)!=m.end() && k--)
+    {
+        ans = m[node];
+        node = m[node];
+    }
+    if(k>0) return -1;
+    return ans;
     // Code here
 }
