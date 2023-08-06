@@ -1,23 +1,16 @@
 class Solution {
 public:
-    int numMusicPlaylists(int n, int goal, int k) {
-        const int MOD = 1e9 + 7;
 
-        // Initialize the DP table
-        vector<vector<long>> dp(goal + 1, vector<long>(n + 1, 0));
-        dp[0][0] = 1;
+    long factorial(int n) {
+        return n?factorial(n-1)*n%(long)(1e9+7):1;
+    }
 
-        for (int i = 1; i <= goal; i++) {
-            for (int j = 1; j <= min(i, n); j++) {
-                // The i-th song is a new song
-                dp[i][j] = dp[i - 1][j - 1] * (n - j + 1) % MOD;
-                // The i-th song is a song we have played before
-                if (j > k) {
-                    dp[i][j] = (dp[i][j] + dp[i - 1][j] * (j - k)) % MOD;
-                }
-            }
-        }
-
-        return dp[goal][n];
+    int numMusicPlaylists(int N, int L, int K) {
+        long dp[N+1][L+1], mod=1e9+7;
+        for (int i=K+1;i<=N;i++)
+            for (int j=i;j<=L;j++)
+                if ((i==j) || (i==K+1)) dp[i][j]=factorial(i);
+                else dp[i][j]=(dp[i-1][j-1]*i+dp[i][j-1]*(i-K))%mod;
+        return (int)dp[N][L];
     }
 };
