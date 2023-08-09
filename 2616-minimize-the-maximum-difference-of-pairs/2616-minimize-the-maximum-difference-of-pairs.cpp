@@ -1,21 +1,37 @@
 class Solution {
 public:
-    int minimizeMax(vector<int>& A, int p) {
-        sort(A.begin(),A.end());
-        int n = A.size(), left = 0, right = A[n - 1] - A[0];
-        while (left < right) {
-            int mid = (left + right) / 2, k = 0;
-            for (int i = 1; i < n && k < p; ++i) {
-                if (A[i] - A[i - 1] <= mid) {
-                    k++;
-                    i++;
-                }
+    int check(vector<int>& nums, int n, int mid)
+    {
+        int c = 0;
+        for(int i=1;i<n;i++)
+        {
+            if(nums[i]-nums[i-1]<=mid)
+            {
+                c++;
+                i++;
             }
-            if (k >= p)
-                right = mid;
-            else
-                left = mid + 1;
         }
-        return right;
+        return c;
+    }
+    int minimizeMax(vector<int>& nums, int p) {
+        sort(nums.begin(),nums.end());
+        int n = nums.size();
+        int l = 0;
+        int r = nums[n-1]-nums[0];
+        int ans;
+        while(l<=r)
+        {
+            int mid = (l+r)>>1;
+            if(check(nums,n,mid)>=p)
+            {
+                ans=mid;
+                r=mid-1;
+            }
+            else
+            {
+                l=mid+1;
+            }
+        }
+        return ans;
     }
 };
