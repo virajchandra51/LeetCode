@@ -5,6 +5,7 @@ using namespace std;
 
 // } Driver Code Ends
 // User function Template for C++
+// User function Template for C++
 class Solution {
   public:
     long long int M = 1e9+7;
@@ -40,7 +41,7 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        long long int n;
+        int n;
         cin >> n;
         Solution ob;
         cout << ob.nthFibonacci(n) << endl;
