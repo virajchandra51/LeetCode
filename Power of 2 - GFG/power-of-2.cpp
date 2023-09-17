@@ -12,7 +12,7 @@ class Solution{
     public:
     // Function to check if given number n is a power of two.
     bool isPowerofTwo(long long n){
-        int c=0;
+        int c = 0;
         while(n)
         {
             if(n&1) c++;
