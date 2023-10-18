@@ -7,8 +7,6 @@ public:
         v[0] = tiles[0][1]-tiles[0][0]+1;
         for(int i=1;i<n;i++) 
             v[i] = v[i-1]+(tiles[i][1]-tiles[i][0]+1);
-        for(auto it:v) cout<<it<<" ";
-        cout<<endl;
         vector<int> a(n);
         for(int i=0;i<n;i++) 
             a[i] = tiles[i][1];
@@ -35,7 +33,6 @@ public:
                 {
                     ss = v[n-1];
                 }
-                cout<<ss<<endl;
                 m=max(m,ss);
             }
             else
@@ -57,7 +54,6 @@ public:
                 {
                     ss = v[n-1]-v[i-1];
                 }
-                cout<<ss<<endl;
                 m=max(m,ss);
             }
         }
