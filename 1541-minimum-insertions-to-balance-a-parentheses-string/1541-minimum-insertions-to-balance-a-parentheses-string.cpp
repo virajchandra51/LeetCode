@@ -24,7 +24,7 @@ public:
                     // since I know s[i] & s[i+1] have ) kept I can jump two indexes forward to i+2
                     i++;
                 }
-                // if s[i+1] is not equal to )
+                // if i is the last index or s[i+1] is not equal to )
                 else 
                 {
                     count++; // I would have to insert a ) to pair up with the s[i] character so that I get two consecutive ))
