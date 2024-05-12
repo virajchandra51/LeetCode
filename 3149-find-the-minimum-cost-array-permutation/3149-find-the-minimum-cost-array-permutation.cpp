@@ -1,10 +1,14 @@
+const int N = 14;
+const int MX = 1 << N;
+int dp[N][MX][N];
+
 class Solution {
 public:
     vector<int> findPermutation(vector<int>& nums) {
         int n = nums.size();
         int target_mask = (1 << n) - 1;
         const int NP = 1e5;
-        int dp[n][target_mask+1][n];
+        
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<(target_mask+1);j++)
